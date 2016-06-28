@@ -1,0 +1,33 @@
+<html>
+<body>
+<pre>
+     #set($title = "nowcoder")
+    #include("header.vm")
+    #parse("header.vm")
+
+    $!{value1}
+
+    #foreach(${color} in ${colors})
+        display:${foreach.index}/${foreach.count}${color}
+    #end
+
+    #foreach(${key} in $map.keySet())
+        display:   ${foreach.index}/${foreach.count}  $key : $map.get($key)
+    #end
+
+    #foreach(${kv} in $map.entrySet())
+        display:   ${foreach.index}/${foreach.count}  $kv.key  $kv.value
+    #end
+
+    $user.name
+
+    #macro(render_color  $color, $index)
+        macro $color, $index
+    #end
+    #foreach(${color} in ${colors})
+        display:#render_color($color, $foreach.index)
+    #end
+
+</pre>
+</body>
+</html>
