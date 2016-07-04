@@ -22,7 +22,7 @@ import javax.servlet.http.HttpSession;
  * Created by yby on 2016/6/27.
  */
 
-@Controller
+//@Controller
 public class IndexController {
 
     @Autowired
