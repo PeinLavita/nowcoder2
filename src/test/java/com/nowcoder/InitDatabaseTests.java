@@ -1,16 +1,16 @@
 package com.nowcoder;
 
+import com.nowcoder.dao.CommentDAO;
 import com.nowcoder.dao.LoginTicketDAO;
 import com.nowcoder.dao.NewsDAO;
 import com.nowcoder.dao.UserDAO;
-import com.nowcoder.model.LoginTicket;
-import com.nowcoder.model.News;
-import com.nowcoder.model.User;
+import com.nowcoder.model.*;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.stereotype.Repository;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -30,6 +30,9 @@ public class InitDatabaseTests {
 
     @Autowired
     LoginTicketDAO loginTicketDAO;
+
+    @Autowired
+    CommentDAO commentDAO;
 
     @Test
     public void initData() {
@@ -57,6 +60,18 @@ public class InitDatabaseTests {
             user.setPassword("newpassword");
             userDAO.updatePassword(user);
 
+            for (int j=0; j<3; j++){
+
+                Comment comment = new Comment();
+                comment.setUserId(i+1);
+                comment.setCreatedDate(new Date());
+                comment.setStatus(0);
+                comment.setContent("这里是一个评论啊！" + String.valueOf(j));
+                comment.setEntityId(news.getId());
+                comment.setEntityType(EntityType.ENTITY_NEWS);
+                commentDAO.addComment(comment);
+            }
+
             LoginTicket ticket = new LoginTicket();
             ticket.setStatus(0);
             ticket.setUserId(i+1);
@@ -72,6 +87,7 @@ public class InitDatabaseTests {
         userDAO.deleteById(1);
         Assert.assertNull(userDAO.selectById(1));
 
+        Assert.assertNotNull(commentDAO.selectByEntity(1, EntityType.ENTITY_NEWS).get(0));
     }
 
 }
