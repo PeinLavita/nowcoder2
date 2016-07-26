@@ -34,7 +34,7 @@
             </div>
             <div class="user-info">
                 <div class="user-avatar">
-                    <a href="/user/$!{owner.id}"><img width="32" class="img-circle" src="$!{owner.headUrl}"></a>
+                    <a href="./user/$!{owner.id}"><img width="32" class="img-circle" src="$!{owner.headUrl}"></a>
                 </div>
                 <!--
                 <div class="info">
@@ -48,7 +48,7 @@
                 -->
             </div>
 
-            <div class="subject-name">来自 <a href="/user/$!{owner.id}">$!{owner.name}</a></div>
+            <div class="subject-name">来自 <a href="./user/$!{owner.id}">$!{owner.name}</a></div>
         </div>
         <!--
         <div class="social-share-button text-center" data-title="读《Web 全栈工程师的自我修养》 http://nowcoder.com/posts/wt2rwy 分享自 @影浅 创建的《web开发的愚人之旅》 http://nowcoder.com/subjects/2245( 想看更多？下载 @牛客网 app：http://nowcoder.com/download )" data-type="text" data-url="null" data-img="http://nowcoder.com/screenshots/8/469448.png">
@@ -84,7 +84,7 @@
             </form>
             #else
             <div class="login-actions">
-                <a class="btn btn-success" href="/?pop=1">登录后评论</a>
+                <a class="btn btn-success" href="./?pop=1">登录后评论</a>
             </div>
             #end
         </div>
@@ -92,7 +92,7 @@
         <div id="comments" class="comments">
             #foreach($commentvo in $comments)
             <div class="media">
-                <a class="media-left" href="/user/$!{commentvo.user.id}">
+                <a class="media-left" href="./user/$!{commentvo.user.id}">
                     <img src="$!{commentvo.user.headUrl}">
                 </a>
                 <div class="media-body">
@@ -149,6 +149,6 @@
           })
 
     </script>
-    <script type="text/javascript" src="/scripts/main/site/detail.js"></script>
+    <script type="text/javascript" src="./scripts/main/site/detail.js"></script>
 </div>
 #parse("footer.html")
